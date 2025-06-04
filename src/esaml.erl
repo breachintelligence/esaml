@@ -430,7 +430,7 @@ lang_elems(BaseTag, Val) ->
 %% @private
 -spec to_xml(saml_record()) -> #xmlElement{}.
 to_xml(#esaml_authnreq{version = V, issue_instant = Time, destination = Dest,
-        issuer = Issuer, name_format = Format, consumer_location = Consumer}) ->
+        issuer = Issuer, name_format = Format, consumer_location = Consumer, force_authn = ForceAuthn}) ->
     Ns = #xmlNamespace{nodes = [{"samlp", 'urn:oasis:names:tc:SAML:2.0:protocol'},
                                 {"saml", 'urn:oasis:names:tc:SAML:2.0:assertion'}]},
 
@@ -441,6 +441,7 @@ to_xml(#esaml_authnreq{version = V, issue_instant = Time, destination = Dest,
                       #xmlAttribute{name = 'Version', value = V},
                       #xmlAttribute{name = 'Destination', value = Dest},
                       #xmlAttribute{name = 'AssertionConsumerServiceURL', value = Consumer},
+                      #xmlAttribute{name = 'ForceAuthn', value = ForceAuthn},
                       #xmlAttribute{name = 'ProtocolBinding', value = "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"}],
         content = [#xmlElement{name = 'saml:Issuer', content = [#xmlText{value = Issuer}]}] ++
               case is_list(Format) of
