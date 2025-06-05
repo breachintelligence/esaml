@@ -46,7 +46,8 @@
 	destination = "" :: string(),
 	issuer = "" :: string(),
 	name_format = undefined :: undefined | string(),
-	consumer_location = "" :: string()}).
+	consumer_location = "" :: string(),
+	force_authn = false :: boolean()}).
 
 -record(esaml_subject, {
 	name = "" :: string(),
